@@ -13,22 +13,22 @@ import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 function getCategoryName(blog: any) {
   // Handle undefined blog case
   if (!blog) return "";
-  
+
   // Handle old blog format with blogCategory string
   if (blog.blogCategory) return blog.blogCategory;
-  
+
   // Handle new blog format with categories array
   if (blog.categories && Array.isArray(blog.categories)) {
     // Handle empty categories array
     if (blog.categories.length === 0) return "";
-    
+
     const cat = blog.categories[0];
     // Handle category as object with name property
     if (cat && typeof cat === "object" && cat.name) return cat.name;
     // Handle category as string
     if (typeof cat === "string") return cat;
   }
-  
+
   // Default fallback
   return "";
 }
@@ -104,7 +104,7 @@ export default function BlogsCard() {
 
   // Example: Replace with your real search/filter state
   const searchTerm = ""; // e.g. from a search box or category selector
-  const filteredBlogs = blogs.filter(blog => {
+  const filteredBlogs = blogs.filter((blog) => {
     // Super defensive approach to prevent toLowerCase errors
     const categoryName = getCategoryName(blog) || "";
     const term = searchTerm || "";
@@ -215,7 +215,7 @@ export default function BlogsCard() {
                 key={index}
                 type="button"
                 onClick={() => emblaApi?.scrollTo(index)}
-                className="w-11 h-11 rounded-full flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                className="w-4 h-4 rounded-full flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={selectedIndex === index ? "true" : undefined}
               >
