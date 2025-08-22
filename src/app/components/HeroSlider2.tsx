@@ -179,19 +179,29 @@ const BlackFridayBanner: React.FC = () => {
             <div key={banner.id} className="embla__slide flex-[0_0_100%]">
               <div className="relative w-full">
                 {/* Responsive banner image */}
-                <div className="relative w-full min-h-[420px] sm:min-h-[300px] md:min-h-[400px]">
+                <picture>
+                  <source
+                    srcSet={banner.srcLarge}
+                    type="image/webp"
+                    media="(min-width: 640px)"
+                  />
+
+                  <source
+                    srcSet={banner.srcSmall}
+                    type="image/webp"
+                    media="(max-width: 639px)"
+                  />
+
                   <Image
                     src={banner.srcLarge || "/placeholder.svg"}
                     alt={banner.alt}
-                    className="object-cover"
-                    fill
-                    priority={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    sizes="100vw"
+                    className="w-full h-auto object-cover min-h-[420px] sm:min-h-[300px] md:min-h-[400px]"
+                    width={1440}
+                    height={500}
+                    priority={banner.id === 1}
                     quality={90}
                   />
-                </div>
+                </picture>
 
                 {/* Three-section layout for desktop */}
                 <div className="absolute inset-0 hidden sm:flex">
