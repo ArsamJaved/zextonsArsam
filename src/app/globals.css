@@ -38,8 +38,10 @@
 }
 
 :root {
-  /* Darken primary to ensure sufficient contrast with white text (WCAG AA) */
-  --primary: #16a34a; /* Tailwind green-800 */
+  /* WCAG AA compliant colors for better accessibility */
+  --primary: #15803d; /* Darker green for better contrast with white text */
+  --primary-dark: #166534; /* Even darker for hover states */
+  --primary-light: #22c55e; /* Lighter green for backgrounds */
   --secondary: #15803d; /* Tailwind green-700 */
 }
 

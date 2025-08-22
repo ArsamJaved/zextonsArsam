@@ -183,7 +183,7 @@ export default function BlogsCard() {
                 <div className="embla__slide flex-[0_0_100%]  md:flex-[0_0_33.33%]  px-1.5">
                   <div className="flex flex-col justify-center items-center h-full">
                     <Link href="/blogs">
-                      <p className="bg-primary text-white py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white">
+                      <p className="bg-primary-dark text-white py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white">
                         View All
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +215,7 @@ export default function BlogsCard() {
                 key={index}
                 type="button"
                 onClick={() => emblaApi?.scrollTo(index)}
-                className="w-4 h-4 rounded-full flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                className="w-11 h-11 rounded-full flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={selectedIndex === index ? "true" : undefined}
               >

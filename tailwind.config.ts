@@ -20,6 +20,8 @@ export default {
     extend: {
       colors: {
         primary: "var(--primary)",
+        "primary-dark": "var(--primary-dark)",
+        "primary-light": "var(--primary-light)",
         secondary: "var(--secondary)",
       },
       screens: {

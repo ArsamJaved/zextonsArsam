@@ -161,7 +161,7 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
             >
               <div className="flex flex-col justify-center items-center h-full">
                 <Link href={link}>
-                  <p className="bg-primary text-white py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center gap-2">
+                  <p className="bg-primary-dark text-white py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center gap-2">
                     {linkText}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +192,7 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
             key={index}
             type="button"
             onClick={() => emblaApi?.scrollTo(index)}
-            className="w-4 h-4 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             aria-label={`Go to slide ${index + 1}`}
             aria-current={selectedIndex === index ? "true" : undefined}
           >
