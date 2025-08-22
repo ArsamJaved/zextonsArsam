@@ -39,7 +39,7 @@
 
 :root {
   /* Darken primary to ensure sufficient contrast with white text (WCAG AA) */
-  --primary: #166534; /* Tailwind green-800 */
+  --primary: #16a34a; /* Tailwind green-800 */
   --secondary: #15803d; /* Tailwind green-700 */
 }
 
