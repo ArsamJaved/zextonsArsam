@@ -192,7 +192,7 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
             key={index}
             type="button"
             onClick={() => emblaApi?.scrollTo(index)}
-            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            className="w-4 h-4 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             aria-label={`Go to slide ${index + 1}`}
             aria-current={selectedIndex === index ? "true" : undefined}
           >
