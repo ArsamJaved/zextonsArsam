@@ -57,13 +57,17 @@ export default function RootLayout({
         />
         {/* Removed brittle preloads that can 404 across builds/envs */}
         {/* Add media query for third-party CSS to optimize loading */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           /* Optimize third-party CSS loading with media queries */
           @media print {
             /* This will never be applied but ensures the CSS is loaded non-render blocking */
             #__next { display: none; }
           }
-        `}} />
+        `,
+          }}
+        />
         <meta
           name="google-site-verification"
           content="J8rGyz7n3ocPGH8yORrkVkqXeC0lmRIgbvrN6eWQr30"
@@ -223,9 +227,7 @@ export default function RootLayout({
       </head>
 
       <body suppressHydrationWarning className="bg-white font-sans antialiased">
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

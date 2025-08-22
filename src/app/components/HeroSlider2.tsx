@@ -11,9 +11,9 @@ import smallnewbggg from "@/app/assets/smallnewbggg.webp";
 import newbgggblack from "@/app/assets/newbgggblack.webp";
 import ipad9gen from "@/app/assets/ipad9gen.webp";
 import newbgggblacksmall from "@/app/assets/newbgggblacksmall.webp";
-import mobileinhand from "@/app/assets/mobileinhand.png";
-import mobileinhandbg from "@/app/assets/mobileinhandbg.png";
-import mobileinhandbgsmall from "@/app/assets/mobileinhandbgsmall.png";
+import mobileinhand from "@/app/assets/mobileinhanda.webp";
+import mobileinhandbg from "@/app/assets/mobileinhandbg.webp";
+import mobileinhandbgsmall from "@/app/assets/mobileinhandbgsmalla.webp";
 // Define the banner type
 interface BannerContent {
   title: string;
