@@ -599,15 +599,23 @@ const BlackFridayBanner: React.FC = () => {
       </div>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+      <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
         {banners.map((_, index) => (
           <button
             key={index}
+            type="button"
             onClick={() => handleDotClick(index)}
-            className={`h-1.5 w-1.5 sm:h-2 sm:w-2 md:w-3 md:h-3 rounded-full ${
-              currentSlide === index ? "bg-primary" : "bg-white"
-            } transition-colors shadow-md`}
-          />
+            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={currentSlide === index ? "true" : undefined}
+          >
+            <span
+              className={`${
+                currentSlide === index ? "bg-primary" : "bg-white"
+              } block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full shadow-md`}
+              aria-hidden="true"
+            />
+          </button>
         ))}
       </div>
     </div>
