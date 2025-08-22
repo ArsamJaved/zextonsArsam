@@ -605,14 +605,14 @@ const BlackFridayBanner: React.FC = () => {
             key={index}
             type="button"
             onClick={() => handleDotClick(index)}
-            className="w-4 h-4 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             aria-label={`Go to slide ${index + 1}`}
             aria-current={currentSlide === index ? "true" : undefined}
           >
             <span
-              className={`${
+              className={`h-1.5 w-1.5 sm:h-2 sm:w-2 md:w-3 md:h-3 rounded-full ${
                 currentSlide === index ? "bg-primary" : "bg-white"
-              } block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full shadow-md`}
+              } transition-colors shadow-md`}
               aria-hidden="true"
             />
           </button>
