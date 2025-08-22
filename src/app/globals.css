@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Embla Carousel Styles */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  height: 100%;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  position: relative;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+:root {
+  --primary: #16a34a;
+  --secondary: #15803d;
+}
+.Zoomed{
+  height: calc(100vh - 154px);
+  height: calc(100vh - 22vh);
+
+}
+.aa [type='text']:focus {
+  box-shadow: none !important;
+}
+.background-check-confetti {
+  background: url(./assets/check-confetti.svg) center center no-repeat;
+  background-size: cover;
+}
+
+.background-confeti-square {
+  background: url(./assets/confeti_square.gif) center center no-repeat;
+  background-size: 97% 97%;
+}
