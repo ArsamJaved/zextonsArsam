@@ -233,27 +233,18 @@ const BlackFridayBanner: React.FC = () => {
                   {/* Middle section - Product image */}
                   <div className="md:w-4/12 lg:w-4/12 relative -rotate-12">
                     {banner.extraImage && (
-                      <div
+                      <Image
                         className={`absolute -bottom-5 transform -translate-y-1/4 hidden sm:block ${
-                          currentSlide === index && index !== 0
+                          currentSlide === index
                             ? "animate-slideUp"
-                            : currentSlide === index && index === 0
-                            ? "opacity-100"
                             : "opacity-0"
                         }`}
-                      >
-                        <div className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px]">
-                          <Image
-                            src={banner.extraImage || "/placeholder.svg"}
-                            alt={`${banner.alt} device`}
-                            className="object-contain"
-                            fill
-                            priority={index === 0}
-                            loading={index === 0 ? "eager" : "lazy"}
-                            fetchPriority={index === 0 ? "high" : "auto"}
-                          />
-                        </div>
-                      </div>
+                        src={banner.extraImage || "/placeholder.svg"}
+                        alt={`${banner.alt} device`}
+                        width={600}
+                        height={600}
+                        priority={banner.id === 1}
+                      />
                     )}
                   </div>
 
