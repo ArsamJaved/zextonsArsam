@@ -376,12 +376,12 @@ const BlackFridayBanner: React.FC = () => {
                   <div className="text-xs sm:text-sm font-medium mb-1">
                     Follow Us Now
                   </div>
-                  <div className="flex gap-2 sm:gap-3">
+                  <div className="flex gap-1 sm:gap-2">
                     <a
                       href="https://www.facebook.com/zextonstechstore"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white rounded-full inline-flex items-center justify-center w-11 h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent shadow-sm"
+                      className="bg-white rounded-full p-1"
                       aria-label="Visit Zextons Facebook Page"
                     >
                       <svg
@@ -405,7 +405,7 @@ const BlackFridayBanner: React.FC = () => {
                       href="https://twitter.com/zextons_uk"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white rounded-full inline-flex items-center justify-center w-11 h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent shadow-sm"
+                      className="bg-white rounded-full p-1"
                       aria-label="Follow Zextons on Twitter"
                     >
                       <svg
@@ -429,7 +429,7 @@ const BlackFridayBanner: React.FC = () => {
                       href="https://www.youtube.com/channel/UCb5pBW9HkmUo7CjszeJwqqQ"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white rounded-full inline-flex items-center justify-center w-11 h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent shadow-sm"
+                      className="bg-white rounded-full p-1"
                       aria-label="Visit Zextons YouTube Channel"
                     >
                       <svg
@@ -454,7 +454,7 @@ const BlackFridayBanner: React.FC = () => {
                       href="https://www.instagram.com/zextons.co.uk/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white rounded-full inline-flex items-center justify-center w-11 h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent shadow-sm"
+                      className="bg-white rounded-full p-1"
                       aria-label="Follow Zextons on Instagram"
                     >
                       <svg
@@ -492,33 +492,25 @@ const BlackFridayBanner: React.FC = () => {
                 <div className="sm:hidden absolute inset-0 flex flex-col items-center text-center p-4">
                   {banner.extraImage && (
                     <div
-                      className={`relative w-full max-w-[150px] h-[150px] mx-auto mt-4 ${
-                        currentSlide === index && index !== 0
-                          ? "animate-slideUp"
-                          : currentSlide === index && index === 0
-                          ? "opacity-100"
-                          : "opacity-0"
+                      className={`w-full max-w-[150px] mx-auto mt-4 ${
+                        currentSlide === index ? "animate-slideUp" : "opacity-0"
                       }`}
                     >
                       <Image
                         src={banner.extraImage || "/placeholder.svg"}
                         alt={`${banner.alt} device`}
+                        width={520}
+                        height={520}
                         priority={banner.id === 1}
-                        loading={banner.id === 1 ? "eager" : "lazy"}
-                        className="object-contain"
-                        fill
-                        sizes="(max-width: 640px) 40vw, 20vw"
+                        className="object-contain w-full h-auto"
                       />
                     </div>
                   )}
+
                   {banner.content && (
                     <div
                       className={`mt-4 ${
-                        currentSlide === index && index !== 0
-                          ? "animate-fadeIn"
-                          : currentSlide === index && index === 0
-                          ? "opacity-100"
-                          : "opacity-0"
+                        currentSlide === index ? "animate-fadeIn" : "opacity-0"
                       }`}
                     >
                       <h2
@@ -607,23 +599,15 @@ const BlackFridayBanner: React.FC = () => {
       </div>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+      <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
         {banners.map((_, index) => (
           <button
             key={index}
-            type="button"
             onClick={() => handleDotClick(index)}
-            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-            aria-label={`Go to slide ${index + 1}`}
-            aria-current={currentSlide === index ? "true" : undefined}
-          >
-            <span
-              className={`${
-                currentSlide === index ? "bg-primary" : "bg-white"
-              } block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full shadow-md`}
-              aria-hidden="true"
-            />
-          </button>
+            className={`h-1.5 w-1.5 sm:h-2 sm:w-2 md:w-3 md:h-3 rounded-full ${
+              currentSlide === index ? "bg-primary" : "bg-white"
+            } transition-colors shadow-md`}
+          />
         ))}
       </div>
     </div>
