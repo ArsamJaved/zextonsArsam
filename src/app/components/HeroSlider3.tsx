@@ -8,12 +8,7 @@ import Fade from "embla-carousel-fade";
 
 // Import your existing images
 // Note: You'll need to use your actual image imports from your project
-import iphonehero from "@/app/assets/phone.webp";
 import ipadhero from "@/app/assets/ipad-hero.webp";
-import banner1 from "@/app/assets/banner1.png";
-import smbanner1 from "@/app/assets/smbanner1.webp";
-import banner2 from "@/app/assets/banner2.webp";
-import smbanner2 from "@/app/assets/smbanner2.webp";
 import banner3 from "@/app/assets/banner3.webp";
 import smbanner3 from "@/app/assets/smbanner3.webp";
 import newbggg from "@/app/assets/newbggg.webp";
@@ -150,9 +145,9 @@ const BlackFridayBanner: React.FC = () => {
                 <div className="absolute inset-0 hidden md:flex">
                   {/* Left section - Button */}
                   <div className="w-2/12 relative flex items-end pb-6 pl-6">
-                    <button className="bg-white text-black font-bold py-2 px-6 rounded-lg flex items-center gap-2">
+                    <button className="bg-white text-black font-bold py-3 px-6 rounded-lg flex items-center gap-2">
                       ORDER NOW
-                      <span className="flex items-center justify-center w-5 h-5 bg-black text-white rounded-lg">
+                      <span className="flex items-center justify-center w-6 h-6 bg-black text-white rounded-lg">
                         →
                       </span>
                     </button>
@@ -240,7 +235,7 @@ const BlackFridayBanner: React.FC = () => {
                 <div className="absolute top-4 right-4 text-white hidden md:block">
                   <div className="text-sm font-medium mb-1">Follow Us Now</div>
                   <div className="flex gap-2">
-                    <a href="#" className="bg-white rounded-full p-1">
+                    <a href="#" className="bg-white rounded-full p-2 inline-block" aria-label="Facebook">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -256,7 +251,7 @@ const BlackFridayBanner: React.FC = () => {
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                       </svg>
                     </a>
-                    <a href="#" className="bg-white rounded-full p-1">
+                    <a href="#" className="bg-white rounded-full p-2 inline-block" aria-label="Twitter">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -272,7 +267,7 @@ const BlackFridayBanner: React.FC = () => {
                         <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
                       </svg>
                     </a>
-                    <a href="#" className="bg-white rounded-full p-1">
+                    <a href="#" className="bg-white rounded-full p-2 inline-block" aria-label="YouTube">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -289,7 +284,7 @@ const BlackFridayBanner: React.FC = () => {
                         <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                       </svg>
                     </a>
-                    <a href="#" className="bg-white rounded-full p-1">
+                    <a href="#" className="bg-white rounded-full p-2 inline-block" aria-label="Instagram">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -352,9 +347,9 @@ const BlackFridayBanner: React.FC = () => {
                           ))}
                         </div>
                       )}
-                      <button className="mt-4 bg-white text-black text-sm font-bold py-1 px-4 rounded-full flex items-center gap-1 mx-auto">
+                      <button className="mt-4 bg-white text-black text-sm font-bold py-2 px-5 rounded-full flex items-center gap-1 mx-auto">
                         ORDER NOW
-                        <span className="flex items-center justify-center w-4 h-4 bg-black text-white rounded-full text-xs">
+                        <span className="flex items-center justify-center w-5 h-5 bg-black text-white rounded-full text-xs">
                           →
                         </span>
                       </button>
@@ -373,10 +368,15 @@ const BlackFridayBanner: React.FC = () => {
           <button
             key={index}
             onClick={() => handleDotClick(index)}
-            className={`h-1.5 w-1.5 md:w-3 md:h-3 rounded-full ${
+            aria-label={`Go to slide ${index + 1}`}
+            className={`h-3 w-3 md:w-4 md:h-4 rounded-full p-2 flex items-center justify-center ${
               currentSlide === index ? "bg-primary" : "bg-gray-100"
             } transition-colors`}
-          />
+          >
+            <span className={`block h-1.5 w-1.5 md:w-2 md:h-2 rounded-full ${
+              currentSlide === index ? "bg-primary" : "bg-gray-100"
+            }`}></span>
+          </button>
         ))}
       </div>
     </div>

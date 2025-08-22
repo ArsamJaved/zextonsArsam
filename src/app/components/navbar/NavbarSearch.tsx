@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation"; // Use Next.js router
 import { fetchProducts } from "@/app/lib/features/products/getProductSlice";
-import dynamic from "next/dynamic";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 import { RootState } from "@/app/lib/store";
 import { Product } from "../../../../types";
@@ -81,15 +80,16 @@ export default function NavbarSearch() {
         <div className="relative">
           <button
             type="submit"
-            className="absolute inset-y-0 right-4 flex items-center"
-            aria-label="Search"
+            className="absolute inset-y-0 right-2 flex items-center justify-center w-11 h-11 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white hover:bg-gray-100 active:bg-gray-200"
+            aria-label="Search products"
+            title="Search"
           >
-            <MagnifyingGlassIcon className="w-5 h-5 text-gray-500" />
+            <MagnifyingGlassIcon className="w-5 h-5 text-gray-600 pointer-events-none" aria-hidden="true" focusable="false" />
           </button>
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 pr-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary"
+            className="block w-full p-4 pr-14 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary"
             placeholder="Search for Products"
             required
             value={searchTerm}

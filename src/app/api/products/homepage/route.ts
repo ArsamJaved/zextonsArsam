@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const UPSTREAM_URL = "https://api.zextons.co.uk/get/products/homepage";
+const UPSTREAM_URL = "https://api.zextons.co.uk/get/Featureproducts/Homepage";
 const TIMEOUT_MS = 7000;
 
 export async function GET() {

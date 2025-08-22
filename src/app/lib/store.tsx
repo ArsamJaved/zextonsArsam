@@ -8,14 +8,15 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import rootReducer from "@/app/lib/rootReducer";
+import rootReducer from "./rootReducer";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 const createNoopStorage = () => {
   return {
-    getItem: () => Promise.resolve(null),
-    setItem: (_key: string, value: any) => Promise.resolve(value),
-    removeItem: () => Promise.resolve(),
+    getItem: (_key: string): Promise<string | null> => Promise.resolve(null),
+    setItem: (_key: string, _value: string): Promise<void> =>
+      Promise.resolve(),
+    removeItem: (_key: string): Promise<void> => Promise.resolve(),
   };
 };
 

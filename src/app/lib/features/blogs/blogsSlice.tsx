@@ -13,23 +13,18 @@ export const fetchBlogs = createAsyncThunk<
   Blog[], // Type of the returned data (an array of Blog objects)
   void, // No argument passed to the thunk
   { rejectValue: string } // Type of the error message in case of rejection
->("blogs/fetchBlogs", async (_, { rejectWithValue, getState }) => {
-  const state = getState() as { auth: { ip: string } }; // Type the getState() return
-  const ip = state.auth.ip; // Get API base URL from auth state
-
+>("blogs/fetchBlogs", async (_, { rejectWithValue }) => {
   try {
-    console.log("Fetching blogs from:", `${ip}get/blog/latest`);
-    const response = await axios.get(`${ip}get/blog/latest`);
-
-    if (response.data.status === 201) {
-      return response.data.data; // Return blogs data on success
+    const response = await axios.get(`/api/blogs/latest`, { timeout: 8000 });
+    if (response.data.status === 201 || response.status === 200) {
+      return response.data.data as Blog[]; // Return blogs data on success
     } else {
-      console.error("Error:", response.data.message);
-      return rejectWithValue(response.data.message); // Reject with error message
+      const msg = response.data?.message || "Unknown error";
+      return rejectWithValue(msg); // Reject with error message
     }
   } catch (error: any) {
-    console.error("Error fetching blogs:", error.message);
-    return rejectWithValue(error.message); // Reject with error message
+    const msg = error?.response?.data?.message || error.message;
+    return rejectWithValue(msg); // Reject with error message
   }
 });
 

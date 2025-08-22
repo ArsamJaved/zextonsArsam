@@ -98,7 +98,7 @@ export default function SubscribeNewsletter() {
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3 bg-primary text-white font-semibold rounded-lg transition"
+                    className="px-6 py-3 bg-primary text-white font-semibold rounded-lg transition hover:brightness-90 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black/70"
                   >
                     Subscribe
                   </button>
@@ -126,7 +126,7 @@ export default function SubscribeNewsletter() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-indigo-100 text-indigo-500 flex justify-center items-center text-2xl font-bold">
-                  💡
+                  <span aria-hidden="true" role="img">💡</span>
                 </div>
                 <h3 className="font-semibold text-lg mt-4">Daily Tips</h3>
                 <p className="text-gray-600 mt-2">
@@ -135,7 +135,7 @@ export default function SubscribeNewsletter() {
               </div>
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-indigo-100 text-indigo-500 flex justify-center items-center text-2xl font-bold">
-                  🎁
+                  <span aria-hidden="true" role="img">🎁</span>
                 </div>
                 <h3 className="font-semibold text-lg mt-4">Exclusive Offers</h3>
                 <p className="text-gray-600 mt-2">
@@ -144,7 +144,7 @@ export default function SubscribeNewsletter() {
               </div>
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-indigo-100 text-indigo-500 flex justify-center items-center text-2xl font-bold">
-                  📧
+                  <span aria-hidden="true" role="img">📧</span>
                 </div>
                 <h3 className="font-semibold text-lg mt-4">Stay Connected</h3>
                 <p className="text-gray-600 mt-2">

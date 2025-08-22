@@ -97,7 +97,9 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
         <div className="flex space-x-4">
           <button
             onClick={scrollPrev}
-            className="bg-primary hover:bg-green-400 rounded-lg transition w-7 h-7 flex items-center justify-center"
+            aria-label="Previous Slide"
+            type="button"
+            className="bg-primary hover:bg-green-900 rounded-full transition w-11 h-11 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +107,9 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-4 text-white"
+              className="w-5 h-5 text-white"
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 strokeLinecap="round"
@@ -116,7 +120,9 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
           </button>
           <button
             onClick={scrollNext}
-            className="bg-primary hover:bg-green-400 rounded-lg transition w-7 h-7 flex items-center justify-center"
+            aria-label="Next Slide"
+            type="button"
+            className="bg-primary hover:bg-green-900 rounded-full transition w-11 h-11 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +130,9 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-4 text-white"
+              className="w-5 h-5 text-white"
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 strokeLinecap="round"
@@ -180,15 +188,23 @@ const SwiperComponent: FC<SwiperComponentProps> = ({
       </div>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
         {Array.from({ length: scrollSnapList.length }).map((_, index) => (
           <button
             key={index}
+            type="button"
             onClick={() => emblaApi?.scrollTo(index)}
-            className={`w-2 h-2 rounded-full ${
-              selectedIndex === index ? "bg-primary" : "bg-gray-300"
-            } transition-colors`}
-          />
+            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={selectedIndex === index ? "true" : undefined}
+          >
+            <span
+              className={`${
+                selectedIndex === index ? "bg-primary" : "bg-gray-300"
+              } block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full`}
+              aria-hidden="true"
+            />
+          </button>
         ))}
       </div>
     </div>

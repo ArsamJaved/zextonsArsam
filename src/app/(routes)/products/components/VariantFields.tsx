@@ -1,5 +1,4 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import { ConditionPrices } from "../../../../../types";
 import { RadioGroup, Radio } from "@headlessui/react";
 // const RadioGroup = dynamic(
@@ -257,7 +256,7 @@ export default function VariantFields({
                               );
                             }) && (
                               <div className="flex justify-center items-center gap-5">
-                                <s className="text-gray-400 font-medium">
+                                <s className="text-gray-700 font-medium">
                                   £
                                   {
                                     conditionPrices.find((cond: any) => {

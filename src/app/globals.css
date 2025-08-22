@@ -38,14 +38,17 @@
 }
 
 :root {
-  --primary: #16a34a;
-  --secondary: #15803d;
+  /* Darken primary to ensure sufficient contrast with white text (WCAG AA) */
+  --primary: #166534; /* Tailwind green-800 */
+  --secondary: #15803d; /* Tailwind green-700 */
 }
+
 .Zoomed{
   height: calc(100vh - 154px);
   height: calc(100vh - 22vh);
 
 }
+
 .aa [type='text']:focus {
   box-shadow: none !important;
 }

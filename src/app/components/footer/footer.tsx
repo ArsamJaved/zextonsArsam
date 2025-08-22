@@ -40,14 +40,14 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/blogs" className="hover:text-gray-200 text-sm">
+                <Link href="/blogs" className="hover:text-gray-200 text-sm py-2 inline-block">
                   Read Our Blogs
                 </Link>
               </li>
               <li>
                 <Link
                   href="/why-buying-a-refurbished-iphone-is-a-good-idea"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Learn why buying a refurbished iPhone is a good idea"
                 >
                   Why Buying Refurbished iPhone is Good Idea?
@@ -55,8 +55,10 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  // href="https://sell.zextons.co.uk/"
-                  className="hover:text-gray-200 text-sm"
+                  href="https://sell.zextons.co.uk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Sell your mobile phone on Zextons"
                 >
                   Sell My Mobile Phone
@@ -65,7 +67,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Explore Buy Now Pay Later options"
                 >
                   Buy Now Pay Later
@@ -74,7 +76,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/customer-reviews"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Customer Reviews for Zextons"
                 >
                   Customer Reviews
@@ -83,7 +85,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/recycle-mobile-phone"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Recycle your mobile phone in bulk"
                 >
                   Bulk Recycling
@@ -92,7 +94,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/zexton-trade-in"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Learn more about Zextons Trade-in services"
                 >
                   Zextons Trade-in
@@ -101,7 +103,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="https://zextons.tawk.help/"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                   aria-label="Help Center"
                 >
                   Zextons Help Center
@@ -119,7 +121,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/terms-and-conditions"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Terms & Conditions
                 </Link>
@@ -127,7 +129,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Privacy Policy
                 </Link>
@@ -135,7 +137,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/deals-and-discounts"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Deals & Discounts
                 </Link>
@@ -143,7 +145,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/refund-and-return-policy"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Returns & Refund Policy
                 </Link>
@@ -151,20 +153,20 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/shipping-policy"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Shipping Policy
                 </Link>
               </li>
               <li>
-                <Link href="/faqs" className="hover:text-gray-200 text-sm">
+                <Link href="/faqs" className="hover:text-gray-200 text-sm py-2 inline-block">
                   FAQs
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact-us"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Contact Us
                 </Link>
@@ -172,7 +174,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/about-zextons"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   About Us
                 </Link>
@@ -180,7 +182,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/subscribe-newsletter"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block"
                 >
                   Subscribe Our Newsletter
                 </Link>
@@ -200,7 +202,7 @@ const Footer: React.FC = () => {
                   href="https://twitter.com/zextons_uk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 rounded"
                   aria-label="Follow Zextons on Twitter"
                 >
                   <svg
@@ -213,6 +215,7 @@ const Footer: React.FC = () => {
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    aria-hidden="true"
                   >
                     <path d="M2 18.5C3.765 19.521 5.814 20 8 20c6.48 0 11.762-5.137 11.992-11.562L22 4.5l-3.354.5A4 4 0 0 0 16 4c-2.572 0-4.5 2.517-3.88 4.98c-3.552.23-6.771-1.959-8.633-4.875c-1.236 4.197-.09 9.251 3.013 12.366c0 1.176-3 1.878-4.5 2.029" />
                   </svg>
@@ -224,7 +227,7 @@ const Footer: React.FC = () => {
                   href="https://www.youtube.com/channel/UCb5pBW9HkmUo7CjszeJwqqQ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 rounded"
                   aria-label="Visit Zextons YouTube Channel"
                 >
                   <svg
@@ -237,6 +240,7 @@ const Footer: React.FC = () => {
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    aria-hidden="true"
                   >
                     <path d="M12 20.5c1.81 0 3.545-.179 5.153-.507c2.01-.41 3.014-.614 3.93-1.792c.917-1.179.917-2.532.917-5.238v-1.926c0-2.706 0-4.06-.917-5.238c-.916-1.178-1.92-1.383-3.93-1.792A26 26 0 0 0 12 3.5c-1.81 0-3.545.179-5.153.507c-2.01.41-3.014.614-3.93 1.792C2 6.978 2 8.331 2 11.037v1.926c0 2.706 0 4.06.917 5.238c.916 1.178 1.92 1.383 3.93 1.792c1.608.328 3.343.507 5.153.507" />
                     <path d="M15.962 12.313c-.148.606-.938 1.04-2.517 1.911c-1.718.947-2.577 1.42-3.272 1.237a1.7 1.7 0 0 1-.635-.317C9 14.709 9 13.806 9 12s0-2.709.538-3.144c.182-.147.4-.256.635-.317c.695-.183 1.554.29 3.272 1.237c1.58.87 2.369 1.305 2.517 1.911c.05.206.05.42 0 .626" />
@@ -249,7 +253,7 @@ const Footer: React.FC = () => {
                   href="https://www.instagram.com/zextons.co.uk/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 rounded"
                   aria-label="Follow Zextons on Instagram"
                 >
                   <svg
@@ -258,6 +262,7 @@ const Footer: React.FC = () => {
                     height="1.8em"
                     viewBox="0 0 24 24"
                     fill="none"
+                    aria-hidden="true"
                   >
                     <path
                       stroke="currentColor"
@@ -271,7 +276,7 @@ const Footer: React.FC = () => {
               <li className="text-center mx-1">
                 <a
                   href="https://www.tiktok.com/@zextons"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 rounded"
                   aria-label="Visit Zextons on Tiktok"
                 >
                   <svg
@@ -279,6 +284,7 @@ const Footer: React.FC = () => {
                     width="1.8em"
                     height="1.8em"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <g
                       fill="none"
@@ -300,7 +306,7 @@ const Footer: React.FC = () => {
                   href="https://www.facebook.com/zextonstechstore"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 rounded"
                   aria-label="Visit Zextons Facebook Page"
                 >
                   <svg
@@ -309,6 +315,7 @@ const Footer: React.FC = () => {
                     height="1.8em"
                     viewBox="0 0 24 24"
                     fill="none"
+                    aria-hidden="true"
                   >
                     <path
                       fill="currentColor"
@@ -320,7 +327,7 @@ const Footer: React.FC = () => {
               <li className="text-center mx-1">
                 <a
                   href="https://www.pinterest.co.uk/zextons"
-                  className="hover:text-gray-200 text-sm"
+                  className="hover:text-gray-200 text-sm py-2 inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 rounded"
                   aria-label="Visit Zextons on Pinterest"
                 >
                   <svg
@@ -328,6 +335,7 @@ const Footer: React.FC = () => {
                     width="1.8em"
                     height="1.8em"
                     viewBox="0 0 15 15"
+                    aria-hidden="true"
                   >
                     <path
                       fill="none"

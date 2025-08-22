@@ -101,7 +101,6 @@ const CustomAccordion = ({
 
 const CustomAccordionItem = ({
   children,
-  value,
   isOpen,
   onToggle,
   className = "",
@@ -141,7 +140,7 @@ const CustomAccordionTrigger = ({
   className?: string;
 }) => (
   <button
-    className={`flex items-center justify-between w-full py-4 text-lg font-semibold text-gray-900 hover:text-green-600 transition-colors duration-200 ${className}`}
+    className={`flex items-center justify-between w-full py-4 text-lg font-semibold text-gray-900 hover:text-green-600 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-lg ${className}`}
     onClick={onToggle}
     aria-expanded={isOpen}
   >
@@ -155,6 +154,8 @@ const CustomAccordionTrigger = ({
       viewBox="0 0 24 24"
       stroke="currentColor"
       strokeWidth="2"
+      aria-hidden="true"
+      focusable="false"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
     </svg>
@@ -194,6 +195,8 @@ const CheckCircleIcon = ({ className = "" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`w-5 h-5 text-green-600 ${className}`}
+    aria-hidden="true"
+    focusable="false"
   >
     <path d="M22 11.08V12a10 10 0 1 1-5.93-8.5" />
     <polyline points="22 4 12 14.01 9 11.01" />
@@ -210,6 +213,8 @@ const MailIcon = ({ className = "" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`w-5 h-5 text-green-600 ${className}`}
+    aria-hidden="true"
+    focusable="false"
   >
     <rect width="20" height="16" x="2" y="4" rx="2" />
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -226,6 +231,8 @@ const PhoneIcon = ({ className = "" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`w-5 h-5 text-green-600 ${className}`}
+    aria-hidden="true"
+    focusable="false"
   >
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-1.18 2.19l-.7.35a18.76 18.76 0 0 0 6 6l.35-.7a2 2 0 0 1 2.19-1.18 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
   </svg>
@@ -241,6 +248,8 @@ const ClockIcon = ({ className = "" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`w-5 h-5 text-green-600 ${className}`}
+    aria-hidden="true"
+    focusable="false"
   >
     <circle cx="12" cy="12" r="10" />
     <polyline points="12 6 12 12 16 14" />
@@ -257,98 +266,10 @@ const StarIcon = ({ className = "", fill = "none" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`w-4 h-4 ${className}`}
+    aria-hidden="true"
+    focusable="false"
   >
     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-  </svg>
-);
-
-// New custom icons for features
-const ShieldCheckIcon = ({ className = "" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={`w-5 h-5 text-green-600 ${className}`}
-  >
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    <path d="m9 12 2 2 4-4" />
-  </svg>
-);
-
-const TruckIcon = ({ className = "" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={`w-5 h-5 text-green-600 ${className}`}
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-  >
-    <g
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.5"
-    >
-      <path d="M19.5 17.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0m-10 0a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0" />
-      <path d="M14.5 17.5h-5m10 0h.763c.22 0 .33 0 .422-.012a1.5 1.5 0 0 0 1.303-1.302c.012-.093.012-.203.012-.423V13a6.5 6.5 0 0 0-6.5-6.5M2 4h10c1.414 0 2.121 0 2.56.44C15 4.878 15 5.585 15 7v8.5M2 12.75V15c0 .935 0 1.402.201 1.75a1.5 1.5 0 0 0 .549.549c.348.201.815.201 1.75.201M2 7h6m-6 3h4" />
-    </g>
-  </svg>
-);
-
-const GiftIcon = ({ className = "" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={`w-5 h-5 text-green-600 ${className}`}
-  >
-    <rect x="3" y="8" width="18" height="4" rx="1" />
-    <path d="M12 8v13" />
-    <path d="M19 12v9" />
-    <path d="M5 12v9" />
-    <path d="M22 8H2" />
-    <path d="M12 8V2H7a2 2 0 0 0-2 2v4" />
-    <path d="M12 8V2h5a2 2 0 0 1 2 2v4" />
-  </svg>
-);
-
-const HeadphonesIcon = ({ className = "" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={`w-5 h-5 text-green-600 ${className}`}
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-  >
-    <path
-      fill="currentColor"
-      d="M11 21v-2h8v-7.1q0-2.925-2.037-4.962T12 4.9T7.038 6.938T5 11.9V18H2v-5.725h1l.075-1.325q.2-1.7.988-3.15t1.975-2.525T8.762 3.6T12 3t3.225.6t2.725 1.663t1.975 2.512t1 3.15l.075 1.35h1V18h-1v3zm-2-7q-.425 0-.712-.288T8 13t.288-.712T9 12t.713.288T10 13t-.288.713T9 14m6 0q-.425 0-.712-.288T14 13t.288-.712T15 12t.713.288T16 13t-.288.713T15 14m-8.975-1.55Q5.85 9.8 7.625 7.9T12.05 6q2.225 0 3.913 1.412T18 11.026Q15.725 11 13.813 9.8t-2.938-3.25q-.4 2-1.687 3.563T6.025 12.45"
-    />
-  </svg>
-);
-
-const LockIcon = ({ className = "" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={`w-5 h-5 text-green-600 ${className}`}
-  >
-    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
 
@@ -389,22 +310,22 @@ interface DetailedTestimonial {
 // Helper function to get the appropriate icon for a feature
 const getFeatureIcon = (feature: string) => {
   if (feature.includes("Warranty")) {
-    return <>🛡️</>;
+    return <span aria-hidden="true" role="img">🛡️</span>;
   }
   if (feature.includes("Delivery")) {
-    return <>🚚</>;
+    return <span aria-hidden="true" role="img">🚚</span>;
   }
   if (feature.includes("Protection Bundle")) {
-    return <>🎁</>;
+    return <span aria-hidden="true" role="img">🎁</span>;
   }
   if (feature.includes("Support")) {
-    return <>🎧</>;
+    return <span aria-hidden="true" role="img">🎧</span>;
   }
   if (
     feature.includes("Secure Checkout") ||
     feature.includes("Trusted Reviews")
   ) {
-    return <>🔒</>;
+    return <span aria-hidden="true" role="img">🔒</span>;
   }
   return <CheckCircleIcon />; // Default icon if no specific match
 };
@@ -609,7 +530,7 @@ const ZextonsWelcome: React.FC = () => {
               <div className="mt-4">
                 <Link
                   href="/grading-guide"
-                  className="text-green-600 hover:underline font-medium text-sm"
+                  className="text-green-800 underline underline-offset-2 hover:text-green-900 font-semibold text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded"
                 >
                   See full grading guide
                 </Link>
@@ -710,7 +631,7 @@ const ZextonsWelcome: React.FC = () => {
                               }
                             />
                           ))}
-                          <span className="text-green-600 font-semibold text-sm ml-1">
+                          <span className="text-green-800 font-semibold text-sm ml-1">
                             Verified
                           </span>
                         </div>
@@ -728,7 +649,7 @@ const ZextonsWelcome: React.FC = () => {
               </div>
             </div>
             <button
-              className="absolute top-1/2 left-0 -translate-x-full -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
+              className="absolute top-1/2 left-0 -translate-x-full -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               onClick={scrollPrev}
               disabled={!emblaApi || emblaApi.selectedScrollSnap() === 0}
               aria-label="Previous testimonial"
@@ -740,6 +661,8 @@ const ZextonsWelcome: React.FC = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth="2"
+                aria-hidden="true"
+                focusable="false"
               >
                 <path
                   strokeLinecap="round"
@@ -749,7 +672,7 @@ const ZextonsWelcome: React.FC = () => {
               </svg>
             </button>
             <button
-              className="absolute top-1/2 right-0 translate-x-full -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
+              className="absolute top-1/2 right-0 translate-x-full -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               onClick={scrollNext}
               disabled={
                 !emblaApi ||
@@ -765,6 +688,8 @@ const ZextonsWelcome: React.FC = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth="2"
+                aria-hidden="true"
+                focusable="false"
               >
                 <path
                   strokeLinecap="round"
@@ -803,7 +728,7 @@ const ZextonsWelcome: React.FC = () => {
             Get in Touch
           </CustomCardTitle>
           <CustomCardDescription className="text-gray-700 text-[15px] leading-relaxed max-w-3xl">
-            Questions? We're here to help.
+            Questions? We&apos;re here to help.
           </CustomCardDescription>
         </CustomCardHeader>
         <CustomCardContent>
@@ -815,7 +740,7 @@ const ZextonsWelcome: React.FC = () => {
                 </h3>
                 <Link
                   href="mailto:hello@zextons.co.uk"
-                  className="text-green-600 hover:underline text-sm"
+                  className="text-green-700 hover:text-green-800 underline underline-offset-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded"
                 >
                   hello@zextons.co.uk
                 </Link>
@@ -828,7 +753,7 @@ const ZextonsWelcome: React.FC = () => {
                 </h3>
                 <Link
                   href="tel:03333448541"
-                  className="text-green-600 hover:underline text-sm"
+                  className="text-green-700 hover:text-green-800 underline underline-offset-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded"
                 >
                   0333 344 8541
                 </Link>

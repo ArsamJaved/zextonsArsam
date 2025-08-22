@@ -1,9 +1,8 @@
 "use client";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState, useCallback } from "react";
 import { fetchProducts } from "@/app/lib/features/products/getProductSlice";
 import { fetchProductCategory } from "@/app/lib/features/categories/categoriesSlice";
 import "./globals.css";
-import HeroSlider from "./components/HeroSlider";
 import TopBar from "./topbar/page";
 import Nav from "./components/navbar/Nav";
 import { useAppDispatch, useAppSelector } from "./lib/hooks";
@@ -11,7 +10,6 @@ import CategoriesCard from "./components/CategoriesCard";
 import paypal from "@/app/assets/paypal.webp";
 import clearpay from "@/app/assets/clearpay.webp";
 import kalarna from "@/app/assets/kalarna.webp";
-import superimg from "@/app/assets/super.webp";
 import tinyphones from "@/app/assets/tinylogo.webp";
 import handlogo from "@/app/assets/handlogo.png";
 import frontphone from "@/app/assets/frontphone.webp";
@@ -26,13 +24,12 @@ import CookieConsent from "./components/common/ConsentCookie";
 import TextSection from "./components/TextSection";
 import Footer from "./components/footer/footer";
 import Newsletter from "./components/Newsletter";
-import { useAuth } from "./context/Auth";
 import axios from "axios";
 import HeroSlider2 from "./components/HeroSlider2";
 import ZextonsWelcome from "./components/ZextonsWelcome";
 
 export default function Home() {
-  const auth = useAuth();
+  const [mounted, setMounted] = useState(false);
   const [latestProducts, setLatestProducts] = useState([]);
   const [refurbishedProducts, setRefurbishedProducts] = useState<any[]>([]);
   const [featuredCategoryProducts, setFeaturedCategoryProducts] = useState<
@@ -44,43 +41,37 @@ export default function Home() {
   const category = "";
   const [showThankYou, setShowThankYou] = useState(false);
   // const [showConsent, setShowConsent] = useState(false);
-  const fetchLatestProducts = async () => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  const fetchLatestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `${auth.ip}get/latest/products/homepage`
-      );
-      // console.log(response);
+      const response = await axios.get(`/api/products/latest`);
       return response.data.products;
     } catch (error) {
       console.error("Error fetching latest products:", error);
       return [];
     }
-  };
-  const fetchRefurbishedProducts = async () => {
+  }, []);
+  const fetchRefurbishedProducts = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `${auth.ip}get/refurbishedProduct/Homepage`
-      );
-      // console.log(response);
+      const response = await axios.get(`/api/products/refurbished`);
       return response.data.products;
     } catch (error) {
       console.error("Error fetching latest products:", error);
       return [];
     }
-  };
+  }, []);
 
-  const fetchFeaturedCategoryProducts = async () => {
+  const fetchFeaturedCategoryProducts = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `${auth.ip}get/Featureproducts/Homepage`
-      );
-      // console.log(response);
+      const response = await axios.get(`/api/products/homepage`);
       return response.data.products;
     } catch (error) {
       console.error("Error fetching featured category products:", error);
       return [];
     }
-  };
+  }, []);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -94,7 +85,7 @@ export default function Home() {
     };
 
     getProducts();
-  }, []);
+  }, [fetchLatestProducts, fetchFeaturedCategoryProducts, fetchRefurbishedProducts]);
   useEffect(() => {
     // Fetch products and categories concurrentl
     if (!products.length) {
@@ -226,9 +217,11 @@ export default function Home() {
     // Determine whether to show the CookieConsent banner
     setShowConsent(!consent || consent === "rejected");
   }, []);
+  if (!mounted) return null;
   return (
     <>
       <script
+        suppressHydrationWarning
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -398,7 +391,7 @@ export default function Home() {
             <div key={index} className="flex items-center space-x-2 my-1">
               {item.icon}
               <div className="flex flex-col">
-                <span className="text-primary font-bold text-sm">
+                <span className="text-gray-900 font-bold text-sm">
                   {item.title}
                 </span>
                 <span className="text-xs">{item.subtitle}</span>
@@ -440,14 +433,16 @@ export default function Home() {
           </div>
           <div className="hidden lg:flex items-center gap-4">
             {[paypal, kalarna, clearpay].map((img, idx) => (
-              <Image
-                key={idx}
-                src={img.src}
-                alt="Payment Option"
-                loading="lazy"
-                width={100}
-                height={100}
-              />
+              <div key={idx} className="relative h-10 w-24">
+                <Image
+                  src={img.src}
+                  alt="Payment Option"
+                  loading="lazy"
+                  fill
+                  className="object-contain"
+                  sizes="(min-width: 1024px) 96px, 30vw"
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -473,7 +468,7 @@ export default function Home() {
               <h1 className="text-white lg:text-5xl text-2xl font-bold mb-2">
                 Sell
               </h1>
-              <p className="text-white mt-4 mb-10">
+              <p className="text-black mt-4 mb-10">
                 Sell Your Old Devices For Cash.
               </p>
               <a
@@ -484,14 +479,16 @@ export default function Home() {
               </a>
             </div>
             <div className="md:block hidden">
-              <Image
-                className="md:w-48 w-36 md:h-48 h-36 object-cover rounded-md xl:-mb-6 md:mt-0 sm:mt-20 mt-10"
-                src={frontphone.src}
-                alt="Phone Image"
-                loading="lazy"
-                width={192}
-                height={192}
-              />
+              <div className="relative md:w-48 w-36 md:h-48 h-36 xl:-mb-6 md:mt-0 sm:mt-20 mt-10">
+                <Image
+                  src={frontphone.src}
+                  alt="Phone Image"
+                  loading="lazy"
+                  fill
+                  className="object-contain rounded-md"
+                  sizes="(min-width: 1024px) 12rem, 9rem"
+                />
+              </div>
             </div>
           </div>
           <div className="bg-primary transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-lg rounded-3xl p-6 flex flex-wrap items-center md:space-x-20 space-x-5  cursor-pointer">
@@ -510,14 +507,16 @@ export default function Home() {
               </Link>
             </div>
             <div className="md:block hidden">
-              <Image
-                className="md:w-48 w-36 md:h-48 h-36 object-cover rounded-md xl:-mb-6 md:mt-0 sm:mt-20 mt-10"
-                src={backphone.src}
-                alt="Phone Image"
-                loading="lazy"
-                width={192}
-                height={192}
-              />
+              <div className="relative md:w-48 w-36 md:h-48 h-36 xl:-mb-6 md:mt-0 sm:mt-20 mt-10">
+                <Image
+                  src={backphone.src}
+                  alt="Phone Image"
+                  loading="lazy"
+                  fill
+                  className="object-contain rounded-md"
+                  sizes="(min-width: 1024px) 12rem, 9rem"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -571,23 +570,28 @@ export default function Home() {
             </a>
           </div>
           <div className="flex-1 md:flex justify-end">
-            <Image
-              src={tinyphones.src}
-              alt="Tiny Phone"
-              loading="lazy"
-              width={390}
-              height={80}
-            />
+            <div className="relative h-20 w-full max-w-[390px]">
+              <Image
+                src={tinyphones.src}
+                alt="Tiny Phone"
+                loading="lazy"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 390px, 50vw"
+              />
+            </div>
           </div>
           <div className="flex-1 justify-end md:flex hidden">
-            <Image
-              src={handlogo.src}
-              alt="Hand with Phone"
-              className="h-28"
-              loading="lazy"
-              width={137}
-              height={112}
-            />
+            <div className="relative h-28 w-[137px]">
+              <Image
+                src={handlogo.src}
+                alt="Hand with Phone"
+                loading="lazy"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 137px, 20vw"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -600,30 +604,7 @@ export default function Home() {
           link={samsungCategoryUrl}
           linkText="View All"
         />
-        {/* <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6 w-full rounded-lg mt-5">
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col items-start gap-1">
-              <h2 className="text-2xl font-semibold text-black">
-                Pay & earn a 6% Cash Reward
-              </h2>
-              <p className="text-sm mt-1 text-black">With Super</p>
-              <Link
-                href="/shopall"
-                className="bg-white text-black font-medium px-4 py-2 rounded-full hover:bg-gray-200  text-nowrap"
-              >
-                Shop Now
-              </Link>
-            </div>
-            <Image
-              className="hidden md:block "
-              src={superimg.src}
-              alt="Super Image"
-              loading="lazy"
-              width={125}
-              height={65}
-            />
-          </div>
-        </div> */}
+
         {/* Ipad and Tablets */}
         <SwiperComponent
           title="iPads & Tablets"

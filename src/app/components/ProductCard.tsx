@@ -51,13 +51,13 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
           </div>
 
           {/* Ensure image container is consistent */}
-          <div className="w-full sm:h-56 h-56 flex items-center justify-center">
+          <div className="relative w-full sm:h-56 h-56 flex items-center justify-center">
             <Image
-              className="object-contain h-full w-full  transform transition-transform duration-1500 ease-in-out scale-105 group-hover:scale-110"
+              className="object-contain transform transition-transform duration-1500 ease-in-out scale-105 group-hover:scale-110"
               src={`${auth.ip}${product.thumbnail_image.path}`}
               alt="Product Image"
-              width={224}
-              height={224}
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               loading="lazy"
             />
           </div>

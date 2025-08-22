@@ -62,12 +62,9 @@ export const fetchProductCategory = createAsyncThunk<
   { rejectValue: string } // Reject value type
 >(
   "productCategory/fetchProductCategory",
-  async (category, { rejectWithValue, getState }) => {
-    const state = getState() as { auth: { ip: string } }; // Assuming you have an auth slice for IP
-    const ip = state.auth.ip;
-
+  async (category, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${ip}get/product/category/customized`);
+      const response = await axios.get(`/api/category/customized`, { timeout: 10000 });
       if (response.data.status === 201) {
         console.log(response.data.productCategories);
         return response.data.productCategories; // Return the categories

@@ -20,8 +20,8 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
       <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
         Quick Comparison
       </h2>
-      <div className="overflow-x-auto bg-white rounded-xl border border-gray-200 shadow-sm">
-        <table className="w-full text-left table-auto">
+      <div className="overflow-x-auto bg-white/90 rounded-xl border border-gray-300/[0.3] shadow-sm">
+        <table className="w-full text-gray-900/90 table-auto bg-white/90">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -34,7 +34,7 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
                 Functionality
               </th>
               <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Who it's for
+                Who it&apos;s for
               </th>
               <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Price vs New

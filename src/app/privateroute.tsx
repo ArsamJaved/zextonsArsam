@@ -3,47 +3,32 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuth } from "@/app/context/Auth";
- enum UserRoles {
-  USER = "user",
-  ADMIN = "admin",
-}
+import { useSelector } from "react-redux";
+// RootState type includes persisted reducers; _persist key is added by redux-persist
+// We use a loose type here to avoid coupling to the exact RootState definition
+type AnyState = { _persist?: { rehydrated?: boolean } } & Record<string, unknown>;
 interface PrivateRouteProps {
   children: React.ReactNode;
-  requiredRoles?: UserRoles[];
   redirectTo?: string;
 }
 const PrivateRoute = ({
   children,
-  requiredRoles = [],
   redirectTo = "/login",
 }: PrivateRouteProps) => {
   const { user } = useAuth();
   const router = useRouter();
+  const rehydrated = useSelector((state: AnyState) => state._persist?.rehydrated);
 
   useEffect(() => {
-    if (!user) {
+    // Avoid redirecting until redux-persist has rehydrated the store in production
+    if (rehydrated && !user) {
       router.push(redirectTo);
-    } else if (requiredRoles.length > 0 && !requiredRoles.includes(user.role)) {
-      // Redirect based on role if the user doesn't have the required role
-      switch (user.role) {
-        case UserRoles.USER:
-          router.push("/customer/dashboard");
-          break;
-        case UserRoles.ADMIN:
-          router.push("/admin/dashboard");
-          break;
-        default:
-          router.push("/login");
-      }
     }
-  }, [user, requiredRoles, redirectTo, router]);
+  }, [rehydrated, user, redirectTo, router]);
 
-  // If user is not authenticated or doesn't have the required role, don't render the children
-  if (
-    !user ||
-    (requiredRoles.length > 0 && !requiredRoles.includes(user.role))
-  ) {
-    return null; // You can render a loader here if desired
+  // If user is not authenticated, don't render the children
+  if (!rehydrated || !user) {
+    return null; 
   }
   return <>{children}</>;
 };

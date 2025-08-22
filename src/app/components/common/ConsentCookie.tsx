@@ -98,26 +98,26 @@ const CookieConsent: FC = () => {
           <p className="text-sm sm:text-base font-normal">
             This website uses cookies to ensure you get the best experience. |{" "}
             <Link href="/privacy-policy" className="underline">
-              Learn More
+              Read our Privacy Policy
             </Link>
           </p>
         </div>
         <div className="space-x-2 flex items-center">
           <button
             onClick={() => setShowPreferences(true)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+            className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-800"
           >
             Preferences
           </button>
           <button
             onClick={handleAccept}
-            className="bg-[#16A34A] hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+            className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-green-800"
           >
             Accept
           </button>
           <button
             onClick={handleReject}
-            className="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+            className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-red-800"
           >
             Decline
           </button>
@@ -212,7 +212,7 @@ const CookieConsent: FC = () => {
               </div>
 
               <button
-                className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                className="mt-4 bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-green-800"
                 onClick={() => savePreferences(preferences)}
               >
                 Save Preferences

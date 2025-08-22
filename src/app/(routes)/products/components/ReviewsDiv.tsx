@@ -1,11 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import { useAuth } from "@/app/context/Auth";
 import axios from "axios";
 import { StarIcon } from "@heroicons/react/20/solid";
-// const StarIcon = dynamic(() =>
-//   import("@heroicons/react/20/solid").then((mod) => mod.StarIcon)
-// );
 import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
 export default function ReviewsDiv({
@@ -402,6 +398,7 @@ useEffect(() => {
                       className={`w-2 h-2 rounded-full ${
                         selectedIndex === index ? "bg-primary" : "bg-gray-300"
                       } transition-colors`}
+                      aria-label={`Go to slide ${index + 1}`}
                     />
                   )
                 )}

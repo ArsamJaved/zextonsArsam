@@ -182,7 +182,10 @@ const RecentlyViewed: React.FC<RecentlyViewedProps> = ({ product }) => {
                 className={`w-2 h-2 rounded-full ${
                   selectedIndex === index ? "bg-primary" : "bg-gray-300"
                 } transition-colors`}
-              />
+                aria-label={`Go to slide ${index + 1}`}
+              >
+                {/* Screen reader only content */}
+              </button>
             ))}
           </div>
         </div>

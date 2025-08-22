@@ -6,10 +6,12 @@ import { makeStore } from '@/app/lib/store';
 import { persistStore } from 'redux-persist';
 import { AuthProvider } from './context/Auth';
 import { ToastContainer } from 'react-toastify';
+import { useMemo } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const store = makeStore();
-  const persistor = persistStore(store);
+  // Ensure store and persistor are stable across renders
+  const store = useMemo(() => makeStore(), []);
+  const persistor = useMemo(() => persistStore(store), [store]);
 
   return (
     <Provider store={store}>

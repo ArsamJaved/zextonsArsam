@@ -2,10 +2,11 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import ProductPage from "@/app/(routes)/products/[slug]/ProductPage";
 import Loading from "@/app/components/Loading";
+import { API_ENDPOINTS, CONDITIONS_HYPHENATED } from "../services/constants";
 
 async function getProductData(productName: string) {
   console.log(productName);
-  const res = await fetch(`https://api.zextons.co.uk/get/product/by/url`, {
+  const res = await fetch(API_ENDPOINTS.GET_PRODUCT_BY_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ producturl: productName }),
@@ -26,18 +27,7 @@ function extractBaseProductName(fullName: string) {
     ? fullName.substring(1)
     : fullName;
   // Define an array of possible conditions to identify where to split the product name
-  const conditions = [
-    "brand-new",
-    "refurbished",
-    "open-box",
-    "like-new",
-    "used-excellent",
-    "used-very-good",
-    "used-good",
-    "certified-pre-owned",
-    "factory-refurbished",
-    "for-parts-or-not-working",
-  ];
+  const conditions = CONDITIONS_HYPHENATED;
   // Create a regex pattern that matches any of the conditions as whole words
   const conditionPattern = conditions.join("|");
   const regex = new RegExp(`\\b(${conditionPattern})\\b`, "i");
@@ -65,10 +55,9 @@ function extractBaseProductName(fullName: string) {
 export default async function Product({
   params,
 }: {
-    params: Promise<{ slug: string }>
+  params: { slug: string }
 }) {
-  // Await the params.slug
-  const { slug } = await params;
+  const { slug } = params;
   const { baseProductName, variantInfo } = extractBaseProductName(slug);
   const product = await getProductData(baseProductName);
 

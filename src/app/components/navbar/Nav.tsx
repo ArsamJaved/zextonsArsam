@@ -109,12 +109,10 @@ export default function Nav() {
     setIsSearchBarVisible(!isSearchBarVisible);
   };
   const toggleCart = () => setIsCartOpen((prev) => !prev);
-  // Determine navigation destination based on user role
+  // Determine navigation destination for any authenticated user
   const determineDestination = useMemo(() => {
     if (!auth.user) return "/login";
-    return auth.user.role === "admin"
-      ? "/admin/dashboard"
-      : "/customer/dashboard";
+    return "/customer/dashboard";
   }, [auth.user]);
 
   return (

@@ -111,7 +111,8 @@ const NewsletterModal: FC<NewsletterModalProps> = ({ mode }) => {
       <div className="relative bg-white rounded-lg shadow-lg overflow-hidden max-w-2xl w-full flex flex-col xs:flex-row">
         <button
           onClick={handleClose}
-          className="absolute top-1 right-1 lg:right-2 lg:top-2 text-gray-600 hover:text-gray-800 bg-black p-1 rounded"
+          aria-label="Close newsletter modal"
+          className="absolute top-1 right-1 lg:right-2 lg:top-2 text-gray-600 hover:text-gray-800 bg-black p-1 rounded focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black/70"
         >
           <span className="font-bold">
             <svg
@@ -119,6 +120,7 @@ const NewsletterModal: FC<NewsletterModalProps> = ({ mode }) => {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="size-6 text-white"
+              aria-hidden="true"
             >
               <path
                 fillRule="evenodd"
@@ -129,13 +131,17 @@ const NewsletterModal: FC<NewsletterModalProps> = ({ mode }) => {
           </span>
         </button>
 
-        <div className="w-full lg:w-1/2">
+        <div
+          className="relative w-full lg:w-1/2"
+          style={{ aspectRatio: `${newsletterImage.width} / ${newsletterImage.height}` }}
+        >
           <Image
-            className="h-full w-full rounded-tl-lg rounded-bl-lg"
             src={newsletterImage}
             alt="Devices"
-            width={500}
-            height={500}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover rounded-tl-lg rounded-bl-lg"
+            priority
           />
         </div>
         <div className="w-full lg:w-1/2 px-4 md:px-8 py-3 sm:py-10 flex flex-col justify-center">
@@ -160,7 +166,7 @@ const NewsletterModal: FC<NewsletterModalProps> = ({ mode }) => {
             )}
             <button
               type="submit"
-              className="mt-3 w-full font-bold bg-gray-100 text-gray-800 hover:text-white duration-300 py-2 rounded-full hover:bg-black"
+              className="mt-3 w-full font-bold bg-primary text-white py-2 rounded-full hover:brightness-90 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black/70"
             >
               SUBMIT
             </button>

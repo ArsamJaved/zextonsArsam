@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
   Check,
   Info,
-  ChevronRight,
   Sparkles,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
@@ -35,7 +34,6 @@ const InteractiveConditionSelector: React.FC<
   InteractiveConditionSelectorProps
 > = ({
   conditionOptions,
-  getImageForCondition,
   getGradientForCondition,
   getImagesForCondition,
 }) => {
@@ -195,6 +193,7 @@ const InteractiveConditionSelector: React.FC<
                           ? "bg-white scale-125"
                           : "bg-white/50 hover:bg-white/75"
                       }`}
+                      aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}
                 </div>
@@ -265,7 +264,7 @@ const InteractiveConditionSelector: React.FC<
                 {/* Image descriptions */}
                 <div className="mt-6 p-4 bg-slate-50 rounded-lg">
                   <h4 className="font-semibold text-slate-900 mb-2">
-                    What you'll see:
+                    What you&apos;ll see:
                   </h4>
                   <ul className="space-y-1 text-sm text-slate-600">
                     {images.map((image, index) => (
@@ -276,6 +275,7 @@ const InteractiveConditionSelector: React.FC<
                               ? "bg-indigo-500"
                               : "bg-slate-300"
                           }`}
+                          aria-label={`Go to slide ${index + 1}`}
                         />
                         {image.alt}
                       </li>

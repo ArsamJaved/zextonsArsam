@@ -123,7 +123,9 @@ export default function BlogsCard() {
         <div className="flex space-x-4">
           <button
             onClick={scrollPrev}
-            className="bg-primary hover:bg-green-400 rounded-lg transition w-7 h-7 flex items-center justify-center"
+            aria-label="Previous Slide"
+            type="button"
+            className="bg-primary hover:bg-green-900 rounded-full transition w-11 h-11 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,6 +133,8 @@ export default function BlogsCard() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
+              aria-hidden="true"
+              focusable="false"
               className="size-5 text-white"
             >
               <path
@@ -142,7 +146,9 @@ export default function BlogsCard() {
           </button>
           <button
             onClick={scrollNext}
-            className="bg-primary hover:bg-green-400 rounded-lg transition w-7 h-7 flex items-center justify-center"
+            aria-label="Next Slide"
+            type="button"
+            className="bg-primary hover:bg-green-900 rounded-full transition w-11 h-11 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +156,8 @@ export default function BlogsCard() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
+              aria-hidden="true"
+              focusable="false"
               className="size-5 text-white"
             >
               <path
@@ -175,7 +183,7 @@ export default function BlogsCard() {
                 <div className="embla__slide flex-[0_0_100%]  md:flex-[0_0_33.33%]  px-1.5">
                   <div className="flex flex-col justify-center items-center h-full">
                     <Link href="/blogs">
-                      <p className="bg-primary text-white py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center gap-2">
+                      <p className="bg-primary text-white py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white">
                         View All
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -183,6 +191,8 @@ export default function BlogsCard() {
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
+                          aria-hidden="true"
+                          focusable="false"
                           className="w-6 h-6"
                         >
                           <path
@@ -203,11 +213,19 @@ export default function BlogsCard() {
             {Array.from({ length: scrollSnapList.length }).map((_, index) => (
               <button
                 key={index}
+                type="button"
                 onClick={() => emblaApi?.scrollTo(index)}
-                className={`w-3 h-3 rounded-full ${
-                  selectedIndex === index ? "bg-primary" : "bg-gray-300"
-                } transition-colors duration-300`}
-              />
+                className="w-11 h-11 rounded-full flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                aria-label={`Go to slide ${index + 1}`}
+                aria-current={selectedIndex === index ? "true" : undefined}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`block w-2.5 h-2.5 rounded-full ${
+                    selectedIndex === index ? "bg-primary" : "bg-gray-300"
+                  } transition-colors duration-300`}
+                />
+              </button>
             ))}
           </div>
         </div>

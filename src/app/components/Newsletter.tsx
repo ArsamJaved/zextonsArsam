@@ -116,7 +116,7 @@ export default function Newsletter({
               />
               <button
                 type="submit"
-                className="bg-primary text-white p-2 rounded-md"
+                className="bg-primary text-white p-2 rounded-md hover:brightness-90 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black/70"
               >
                 Subscribe
               </button>

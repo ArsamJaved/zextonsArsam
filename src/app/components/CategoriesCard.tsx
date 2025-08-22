@@ -201,11 +201,19 @@ const CategoriesCard: React.FC<CategoriesCardProps> = ({
         {categories.map((_, index) => (
           <button
             key={index}
+            type="button"
             onClick={() => handleDotClick(index)}
-            className={`w-3 h-3 rounded-full ${
-              currentSlide === index ? "bg-white" : "bg-gray-500"
-            } transition-colors`}
-          />
+            className="w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80"
+            aria-label={`Slide ${index + 1}`}
+            aria-pressed={currentSlide === index}
+          >
+            <span
+              aria-hidden="true"
+              className={`w-3 h-3 rounded-full ${
+                currentSlide === index ? "bg-white" : "bg-gray-500"
+              } transition-colors`}
+            />
+          </button>
         ))}
       </div>
     </div>

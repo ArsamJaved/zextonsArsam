@@ -18,6 +18,14 @@ interface BlogData {
   blogCategory: string;
   createdAt: string;
   updatedAt: string;
+  blogpublisheddate: string;
+  metaschemas?: string[];
+  // SEO overrides from backend
+  metaTitle?: string;
+  metaDescription?: string;
+  metakeywords?: string;
+  metaImage?: string;
+  metaImageAlt?: string;
 }
 
 export const dynamic = "force-static";
@@ -56,6 +64,19 @@ function formatDateGB(dateStr: string): string {
   return `${dd}/${mm}/${yyyy}`; // deterministic SSR/CSR
 }
 
+// Return YYYY-MM-DD in UTC, suitable for schema.org date fields (date-only)
+function formatDateISO(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    // fallback: best-effort slice if already a string
+    return (dateStr || "").slice(0, 10);
+  }
+  const yyyy = d.getUTCFullYear();
+  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+  const dd = String(d.getUTCDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -73,31 +94,39 @@ export async function generateMetadata({
   }
 
   const baseUrl = "https://api.zextons.co.uk";
-  const ogImage = blog.blogImage.startsWith("http")
-    ? blog.blogImage
-    : `${baseUrl}/${blog.blogImage}`;
+  const rawOgImage = (blog.metaImage && blog.metaImage) || blog.blogImage;
+  const ogImage = rawOgImage?.startsWith("http")
+    ? rawOgImage
+    : `${baseUrl}/${rawOgImage}`;
+  const ogImageAlt = blog.metaImageAlt || blog.blogImageAlt || blog.name;
+
+  // SEO field fallbacks
+  const seoTitle = blog.metaTitle || blog.name;
+  const seoDesc = blog.metaDescription || blog.blogShortDescription;
+  const seoKeywords = blog.metakeywords || blog.blogCategory;
+  const publishedISO = (blog.blogpublisheddate || blog.createdAt);
 
   return {
-    title: `${blog.name} | Zextons`,
-    description: blog.blogShortDescription,
-    keywords: blog.blogCategory,
+    title: `${seoTitle} | Zextons`,
+    description: seoDesc,
+    keywords: seoKeywords,
     robots: "index, follow, max-image-preview:large, max-snippet:-1",
     openGraph: {
-      title: blog.name,
-      description: blog.blogShortDescription,
+      title: seoTitle,
+      description: seoDesc,
       type: "article",
-      publishedTime: blog.createdAt,
+      publishedTime: publishedISO,
       modifiedTime: blog.updatedAt,
       authors: ["Zextons"],
       siteName: "Zextons",
       locale: "en_GB",
       url: `https://zextons.co.uk/blogs/${slug}`,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: blog.blogImageAlt || blog.name }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: ogImageAlt }],
     },
     twitter: {
       card: "summary_large_image",
-      title: blog.name,
-      description: blog.blogShortDescription,
+      title: seoTitle,
+      description: seoDesc,
       images: [ogImage],
     },
     alternates: {
@@ -121,16 +150,18 @@ export default async function BlogPage({
     : `${baseUrl}/${blog.blogImage}`;
 
   const staticContent = getStaticContent(blog.content);
-  const dateDisplay = formatDateGB(blog.createdAt);
+  const publishedRaw = blog.blogpublisheddate || blog.createdAt;
+  const dateDisplay = formatDateGB(publishedRaw);
+  const dateModifiedISO = formatDateISO(blog.updatedAt);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline: blog.name,
-    description: blog.blogShortDescription,
+    headline: blog.metaTitle || blog.name,
+    description: blog.metaDescription || blog.blogShortDescription,
     image: heroImage,
-    datePublished: blog.createdAt,
-    dateModified: blog.updatedAt,
+    datePublished: formatDateISO(publishedRaw),
+    dateModified: dateModifiedISO,
     articleBody: staticContent.replace(/<[^>]*>/g, ""),
     wordCount: staticContent.split(/\s+/).length,
     author: { "@type": "Organization", name: "Zextons", url: "https://zextons.co.uk" },
@@ -142,12 +173,32 @@ export default async function BlogPage({
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://zextons.co.uk/blogs/${slug}` },
   };
 
+  // Parse any backend-provided metaschemas (array of JSON strings)
+  const extraSchemas = Array.isArray(blog.metaschemas)
+    ? blog.metaschemas
+        .map((s) => {
+          try {
+            return JSON.parse(s);
+          } catch {
+            return null; // skip invalid JSON to avoid injecting malformed data
+          }
+        })
+        .filter(Boolean)
+    : [];
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {extraSchemas.map((schema: unknown, idx: number) => (
+        <script
+          key={`ldjson-extra-${idx}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <TopBar />
       <Nav />
 
@@ -161,6 +212,7 @@ export default async function BlogPage({
               className="w-full h-[35rem] object-cover"
               width={1200}
               height={700}
+              fetchPriority="high"
               priority
               quality={90}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
@@ -175,8 +227,8 @@ export default async function BlogPage({
             <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-6">
               <div className="text-white max-w-screen-md">
                 <DateDisplay 
-                  dateString={blog.createdAt}
-                  dateTime={blog.createdAt}
+                  dateString={publishedRaw}
+                  dateTime={publishedRaw}
                   className="text-white"
                   fallbackText={dateDisplay}
                 />
@@ -184,7 +236,7 @@ export default async function BlogPage({
                   {blog.name}
                 </h1>
                 <p className="mt-3 text-md sm:text-lg text-gray-200">
-                  {blog.blogShortDescription}
+                  {blog.metaDescription || blog.blogShortDescription}
                 </p>
               </div>
             </div>

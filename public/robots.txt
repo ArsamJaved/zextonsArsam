@@ -11,5 +11,6 @@ Disallow: /reset-password/
 Disallow: /log-out
 Disallow: /Support/Your-payments
 Disallow: /customer/
+Allow: /_next/
 
 Sitemap: https://zextons.co.uk/sitemap.xml

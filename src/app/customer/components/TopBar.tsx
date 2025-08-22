@@ -52,8 +52,8 @@ const TopBar: FC<TopProps> = ({
     ? generateImageFromInitial(firstName.charAt(0).toUpperCase())
     : "";
 
-  const handleLogout = async () => {
-    await auth.logout();
+  const handleLogout = () => {
+    auth.logout();
     router.push("/");
   };
 

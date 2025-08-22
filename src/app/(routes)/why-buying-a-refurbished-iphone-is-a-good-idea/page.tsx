@@ -21,9 +21,9 @@ export default function RefurbishedPhones() {
             Home
           </Link>
           <span className="mx-2">»</span>
-          <a href="#" className="hover:underline">
+          <span className="hover:underline text-gray-800">
             Why buying a refurbished iPhone is a good idea?
-          </a>
+          </span>
         </nav>
         <h1 className="text-3xl mb-4">
           Why buying a refurbished iPhone is a good idea?

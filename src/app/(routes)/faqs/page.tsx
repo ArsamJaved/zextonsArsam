@@ -294,7 +294,7 @@ export default function FAQSPage() {
                 royal mail and track 24 and 48 services. You will be provided
                 tracking information once it is dispatched from our warehouse,
                 you can track your parcel on the royal mail website{" "}
-                <a href="#" className="text-blue-500">
+                <a href="https://www.royalmail.com/track-your-item" target="_blank" rel="noopener noreferrer" className="text-blue-500 py-1 px-1 inline-block">
                   here
                 </a>
                 .

@@ -62,20 +62,11 @@ export default function LoginPage() {
         if (data.status === 201) {
           toast.success(data.message);
 
-          if (data.otpRequired) {
-            setOtpRequired(true);
-            setOtpExpired(false);
-          } else {
-            const user = data.user;
-            auth.login(user);
-            if (user.role === "admin") {
-              router.replace("/admin/dashboard");
-            } else if (user.role === "user") {
-              router.replace("/customer/dashboard");
-            } else {
-              toast.error("Invalid user role");
-            }
-          }
+       
+          const user = data.user;
+          auth.login(user);
+          router.replace("/customer/dashboard");
+        
         } else {
           toast.error(data.message);
         }
@@ -107,13 +98,7 @@ export default function LoginPage() {
           toast.success(data.message);
           const user = data.user;
           auth.login(user);
-          // Assuming that after OTP verification, user should go to admin dashboard
-          // Adjust based on user role as per your logic
-          if (user.role === "admin") {
-            router.replace("/admin/dashboard");
-          } else {
-            router.replace("/customer/dashboard");
-          }
+          router.replace("/customer/dashboard");
         } else {
           toast.error(data.message);
         }
@@ -136,6 +121,7 @@ export default function LoginPage() {
       />
       <TopBar />
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Link href="/">
             <Image
@@ -145,8 +131,23 @@ export default function LoginPage() {
             />
           </Link>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            {otpRequired ? "Enter OTP" : "Customer Sign in"}
+            {auth.user
+              ? "You're already signed in"
+              : otpRequired
+              ? "Enter OTP"
+              : "Customer Sign in"}
           </h2>
+          {auth.user && (
+          <div className="mb-4 text-center">
+            <button
+              type="button"
+              onClick={() => router.push("/customer/dashboard")}
+              className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Go to Dashboard
+            </button>
+          </div>
+        )}
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           {otpRequired ? (

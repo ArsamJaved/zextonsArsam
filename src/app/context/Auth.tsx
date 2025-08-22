@@ -1,7 +1,7 @@
 'use client'
-import { createContext, useContext, useEffect, ReactNode } from "react";
+import { createContext, useContext, ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout, setIp } from "@/app/lib/features/auth/authSlice";
+import { login, logout } from "@/app/lib/features/auth/authSlice";
 import { RootState } from "@/app/lib/store"; // Path to your store
 import { User } from "../../../types";
 
@@ -25,11 +25,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     (state: RootState) => state.auth.user
   ) as User | null; // Typed selector with assertion
   const ip = useSelector((state: RootState) => state.auth.ip); // Typed selector
-
-  // Set the initial IP address (customize based on your needs)
-  useEffect(() => {
-    dispatch(setIp("https://api.zextons.co.uk/"));
-  }, [dispatch]);
 
   const loginHandler = (user: User) => {
     dispatch(login(user));

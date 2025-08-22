@@ -1,15 +1,26 @@
 "use client";
 import React, { useEffect } from 'react';
+import { useTrustPWidget } from "@/app/hooks/useTrustPWidget";
 
 interface TrustBoxWidgetProps {
   className?: string;
 }
 
 const TrustBoxWidget: React.FC<TrustBoxWidgetProps> = ({ className = "mt-10 mb-10" }) => {
+  // Load Trustpilot script and initialize widgets safely
+  useTrustPWidget();
   useEffect(() => {
-    // If window is defined and Trustpilot script exists, reload widgets
-    if (window && (window as any).Trustpilot) {
-      (window as any).Trustpilot.loadFromElement(document.getElementById('trustbox-container'));
+    try {
+      if (typeof window !== "undefined" && (window as any).Trustpilot) {
+        const widgets = document.querySelectorAll(".trustpilot-widget");
+        widgets.forEach((el) => {
+          if (el instanceof HTMLElement) {
+            (window as any).Trustpilot.loadFromElement(el);
+          }
+        });
+      }
+    } catch (e) {
+      console.warn("Trustpilot widget initialization failed:", e);
     }
   }, []);
 

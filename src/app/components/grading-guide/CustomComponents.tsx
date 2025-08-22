@@ -102,13 +102,11 @@ export const CustomAccordion = ({
 
 export const CustomAccordionItem = ({
   children,
-  value,
   isOpen,
   onToggle,
   className = "",
 }: {
   children: React.ReactNode;
-  value: string;
   isOpen?: boolean;
   onToggle?: () => void;
   className?: string;

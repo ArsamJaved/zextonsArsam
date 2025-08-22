@@ -1,4 +1,7 @@
 import type { Config } from "tailwindcss";
+import forms from "@tailwindcss/forms";
+
+type AddUtilitiesFn = (utilities: Record<string, any>, options?: { respectPrefix?: boolean; respectImportant?: boolean }) => void;
 
 export default {
   content: [
@@ -6,6 +9,12 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/(routes)/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  safelist: [
+    // Add any classes that might be dynamically created and should never be purged
+    'animate-slideUp',
+    'animate-slideRight',
+    'animate-fadeIn',
   ],
   theme: {
     extend: {
@@ -68,16 +77,9 @@ export default {
     },
   },
   plugins: [
-    require("@tailwindcss/forms"),
-    // Keep the forms plugin
-    function ({
-      addUtilities,
-    }: {
-      addUtilities: (
-        utilities: Record<string, any>,
-        variants: string[]
-      ) => void;
-    }) {
+    forms,
+    // Custom scrollbar plugin
+    function ({ addUtilities }: { addUtilities: AddUtilitiesFn }) {
       const newUtilities = {
         ".scrollbar-thin": {
           scrollbarWidth: "thin",
@@ -99,7 +101,7 @@ export default {
         // Add styles for other browsers if needed
       };
 
-      addUtilities(newUtilities, ["responsive", "hover"]);
+      addUtilities(newUtilities, { respectPrefix: true, respectImportant: true });
     },
   ],
 } satisfies Config;
